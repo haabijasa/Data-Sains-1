@@ -1,1 +1,35 @@
+##BASIC PROBLEM STATEMENT
+#Masalah yang akan diselesaikan yaitu apakah mayoritas pembeli menggunakan voucher diskon ?, asumsikan bahwa data yang dimiliki yaitu food_delivery_datasets.csv. maka algoritma nya yaitu :
+#1. Import Dataset dan Library
+#2. Cleaning data dengan status completed
+#3. Gunakan kolom voucher_amount dan status
+import pandas as pd
+from collections import Counter
+df = pd.read_csv('https://raw.githubusercontent.com/alamhanz/pandas_journey/main/mydata/food_delivery_datasets.csv')
+group_status = df.groupby('status')
+group_status['status'].size()
+df = df[df.status == 'Completed']
+df.reset_index(drop=True)
+group_voucher = df.groupby('voucher_amount')
+group_voucher['voucher_amount'].size()
 
+#Dengan output yaitu :
+voucher_amount
+0        743
+2000       5
+3000      13
+4000      13
+5000      69
+6000       3
+7000       1
+8000       1
+9000       2
+10000      9
+12000      1
+15000     15
+16500      1
+20000      3
+25000      2
+Name: voucher_amount, dtype: int64
+
+##Dari sini dapat disimpulkan bahwa mayoritas pembeli dengan status order completed tidak menggunakan voucher diskon (743 dari 881 pembeli)
